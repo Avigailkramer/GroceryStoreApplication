@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="avigailsp" Class="DataClasses1DataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="AppSettings" ConnectionString="Data Source=LAPTOP-2V3ATLNJ\SQLEXPRESS;Initial Catalog=avigailsp;Integrated Security=True" SettingsObjectName="SemesterProject.Properties.Settings" SettingsPropertyName="avigailspConnectionString" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.ITEMS" Member="ITEMs">
+    <Type Name="ITEM">
+      <Column Name="ITEM_ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="NAME" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
+      <Column Name="PRICE" Type="System.Decimal" DbType="Decimal(10,2)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.ORDERS" Member="ORDERs">
+    <Type Name="ORDER">
+      <Column Name="ORDER_ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="PERSON_ID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="TOTAL" Type="System.Decimal" DbType="Decimal(10,2)" CanBeNull="true" />
+      <Column Name="DATE" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Association Name="PERSON_ORDER" Member="PERSON" ThisKey="PERSON_ID" OtherKey="PERSON_ID" Type="PERSON" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.PERSON" Member="PERSONs">
+    <Type Name="PERSON">
+      <Column Name="PERSON_ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="USERNAME" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
+      <Column Name="PASSWORD" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
+      <Column Name="BALANCE" Type="System.Decimal" DbType="Decimal(10,2)" CanBeNull="true" />
+      <Association Name="PERSON_ORDER" Member="ORDERs" ThisKey="PERSON_ID" OtherKey="PERSON_ID" Type="ORDER" />
+    </Type>
+  </Table>
+</Database>
